@@ -2,18 +2,18 @@
 
 
 ## The objectives of setting up images this way include
-	- Serving responsive image appropriate to user screen size
-	- Accomodate for retina or high DPI screens
-	- Staggering the loading of images via *waypoints.js* to miminize front-loading of data on page load
-	- Front-loading low-res images to provide a progressive loading effect and to minimize DOM thrash
+- Serving responsive image appropriate to user screen size
+- Accomodate for retina or high DPI screens
+- Staggering the loading of images via *waypoints.js* to miminize front-loading of data on page load
+- Front-loading low-res images to provide a progressive loading effect and to minimize DOM thrash
 
 
 
 ## Included components
-	- Establish additional image sizes in *functions.php* (WordPress)
-	- `<img>` tag output php in template file(s) (WordPress)
-	- Dependency-free JS to trigger image load (jQuery equivalent also included in case you're into that)
-	- Waypoints 4.0.1: dependency-free and jQuery variants
+- Establish additional image sizes in *functions.php* (WordPress)
+- `<img>` tag output php in template file(s) (WordPress)
+- Dependency-free JS to trigger image load (jQuery equivalent also included in case you're into that)
+- Waypoints 4.0.1: dependency-free and jQuery variants
 
 
 
@@ -22,10 +22,10 @@
 This template PHP uses WordPress methods to call values for the **srcset** and **sizes** attributes:
 
 ```
-	$img = get_field('image'); // image array
+$img = get_field('image'); // image array
 
-	$img_srcset = wp_get_attachment_image_srcset( $img['id'], 'xxl' );
-	$img_sizes = wp_get_attachment_image_sizes( $img['id'], 'xxl' );
+$img_srcset = wp_get_attachment_image_srcset( $img['id'], 'xxl' );
+$img_sizes = wp_get_attachment_image_sizes( $img['id'], 'xxl' );
 ```
 
 
@@ -47,7 +47,7 @@ And the the **sizes** value output; at browser widths of 2000px and higher, user
 
 It would be more retina-friendly if the **sizes** attribute showed larger images per srcset increment (above). So offset the **sizes** attribute with the next largest image size:
 ```
-	$img_sizes = wp_get_attachment_image_sizes( $img['id'], 'full' ); // instead of "xxl"; sorry, magic mike.
+$img_sizes = wp_get_attachment_image_sizes( $img['id'], 'full' ); // instead of "xxl"; sorry, magic mike.
 ```
 
 
@@ -76,5 +76,5 @@ sizes="
 
 ```
 ### To-do
-	- Test XD
+- Test XD
 
