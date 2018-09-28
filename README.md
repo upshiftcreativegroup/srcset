@@ -57,7 +57,7 @@ $img_html = '<img src="'.$img['sizes']['medium'].'" srcset="" data-src="'.$img['
 ```
 
 
-Final image output, where the higher quality image+srcset images will be loaded in via waypoints implementation:
+Final image output, where the higher quality image+srcset images will be loaded in via [waypoints implementation](#waypoints-implementation):
 ```
 <img
 src="https://upshiftdemo.com/wp-content/uploads/2049/10/big_image-300x188.jpg"
@@ -73,8 +73,44 @@ https://upshiftdemo.com/wp-content/uploads/2049/10/big_image-2000x1250.jpg 2000w
 sizes="
 (max-width: 5500px) 100vw, 5500px" alt="" class="lazy_waypoint
 ">
+```
+
+#Waypoints Implementation
+
+
+Get the images to be lazy-loaded, loop through them and create a waypoint for each one.
+
+Full JS:
+```
+// Get all elements to be lazy-loaded, by ".lazy_waypoint" class
+var imgEl = document.getElementsByClassName('lazy_waypoint');
+
+for (var i=0; i<imgEl.length; i++) {
+
+
+	// Create waypoints for each elements
+	var waypoint = new Waypoint({
+		element: imgEl[i],
+		handler: function(direction) {
+
+			var thisEl = this.element;
+
+			// Get data-src and data-srcset attribute values and set them to the element's src and srcset attributes
+			if(thisEl.getAttribute('data-src'))
+				thisEl.setAttribute('src',thisEl.getAttribute('data-src'));
+
+			if(thisEl.getAttribute('data-srcset'))
+				thisEl.setAttribute('srcset',thisEl.getAttribute('data-srcset'));
+
+			this.destroy();
+		},
+		offset: '100%'
+	});
+}
 
 ```
+
+
 ### To-do
 - Test XD
 
